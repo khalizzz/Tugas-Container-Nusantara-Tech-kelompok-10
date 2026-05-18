@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusantara Tech - Akademik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Sistem Informasi Akademik Terpusat</h1>
+        
+        <form action="/mahasiswa" method="POST" enctype="multipart/form-data" class="space-y-4 mb-8 bg-gray-50 p-4 rounded border">
+            <h2 class="text-lg font-semibold text-gray-700">Tambah Mahasiswa Baru</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">NIM</label>
+                    <input type="text" name="nim" required class="w-full mt-1 p-2 border rounded focus:ring focus:ring-blue-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">Nama Lengkap</label>
+                    <input type="text" name="nama" required class="w-full mt-1 p-2 border rounded focus:ring focus:ring-blue-300">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-600">Upload Dokumen (Ijazah / Foto Profil) [cite: 6]</label>
+                <input type="file" name="dokumen" required class="w-full mt-1 p-1 bg-white border rounded">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded transition">Simpan Data</button>
+        </form>
+
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Daftar Mahasiswa</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-200 text-left text-sm text-gray-700">
+                        <th class="p-3 border">No</th>
+                        <th class="p-3 border">NIM</th>
+                        <th class="p-3 border">Nama</th>
+                        <th class="p-3 border">Dokumen (Object Storage MinIO) [cite: 16]</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm text-gray-600">
+                    <% if (mahasiswa.length === 0) { %>
+                        <tr>
+                            <td colspan="4" class="p-4 text-center text-gray-400">Belum ada data mahasiswa.</td>
+                        </tr>
+                    <% } %>
+                    <% mahasiswa.forEach((m, index) => { %>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="p-3 border"><%= index + 1 %></td>
+                            <td class="p-3 border font-semibold"><%= m.nim %></td>
+                            <td class="p-3 border"><%= m.nama %></td>
+                            <td class="p-3 border">
+                                <% if (m.dokumen_url) { %>
+                                    <a href="/download/<%= m.dokumen_url %>" target="_blank" class="text-blue-500 hover:underline flex items-center gap-1">
+                                        📄 Lihat/Unduh Dokumen
+                                    </a>
+                                <% } else { %>
+                                    <span class="text-gray-400">Tidak ada file</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
