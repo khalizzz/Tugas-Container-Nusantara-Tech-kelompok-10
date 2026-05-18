@@ -1,4 +1,4 @@
-# Nusantara Tech - Development Environment in a Box
+# Nusantara Tec Development Environment in a Box Kelompok 10
 
 Proyek ini adalah implementasi *containerization* menggunakan Docker dan Docker Compose untuk layanan Sistem Informasi Akademik (Web Node.js, PostgreSQL, dan MinIO Object Storage).
 
