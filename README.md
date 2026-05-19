@@ -2,7 +2,7 @@
 
 Berikut adalah laporan progres dari kelompok kami terkait implementasi arsitektur containerization untuk layanan Sistem Informasi Akademik:
 
-## A. Pemilihan Tech-Stack
+# A. Pemilihan Tech-Stack
 
 **1. Bahasa pemrograman/framework dan Base Image**
 Kami memilih menggunakan **Node.js** untuk membangun aplikasi CRUD. *Base image* yang kami gunakan di dalam `Dockerfile` adalah `node:alpine` (versi ringan dari Node.js berbasis Alpine Linux) untuk meminimalkan ukuran *image* akhir dan mempercepat proses *build*.
